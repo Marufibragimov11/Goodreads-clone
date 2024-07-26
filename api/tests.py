@@ -83,25 +83,25 @@ class BookReviewAPITestCase(APITestCase):
         self.assertEqual(br.comment, "bad book")
 
 
-    # def test_book_review_list(self):
-    #     user_two = CustomUser.objects.create(username="Somebody", first_name="Somebody")
-    #     book = Book.objects.create(title="Book1", description="Description1", isbn="123121")
-    #     br = BookReview.objects.create(book=book, user=self.user, stars_given=5, comment="Very good book")
-    #     br_two = BookReview.objects.create(book=book, user=user_two, stars_given=3,
-    #                                        comment="So bad book. Not recommend")
-    #
-    #     response = self.client.get(reverse('api:review-list'))
-    #
-    #     self.assertEqual(response.status_code, 200)
-    #     self.assertEqual(len(response.data['results']), 2)
-    #     self.assertEqual(response.data['count'], 2)
-    #     self.assertIn('next', response.data)
-    #     self.assertIn('previous', response.data)
-    #
-    #     self.assertEqual(response.data['results'][1]['id'], br_two.id)
-    #     self.assertEqual(response.data['results'][0]['stars_given'], br_two.stars_given)
-    #     self.assertEqual(response.data['results'][0]['comment'], br_two.comment)
-    #
-    #     self.assertEqual(response.data['results'][1]['id'], br.id)
-    #     self.assertEqual(response.data['results'][1]['stars_given'], br.stars_given)
-    #     self.assertEqual(response.data['results'][1]['comment'], br.comment)
+    def test_book_review_list(self):
+        user_two = CustomUser.objects.create(username="Somebody", first_name="Somebody")
+        book = Book.objects.create(title="Book1", description="Description1", isbn="123121")
+        br = BookReview.objects.create(book=book, user=self.user, stars_given=5, comment="Very good book")
+        br_two = BookReview.objects.create(book=book, user=user_two, stars_given=3,
+                                           comment="So bad book. Not recommend")
+
+        response = self.client.get(reverse('api:review-list'))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response.data['results']), 2)
+        self.assertEqual(response.data['count'], 2)
+        self.assertIn('next', response.data)
+        self.assertIn('previous', response.data)
+
+        self.assertEqual(response.data['results'][0]['id'], br_two.id)
+        self.assertEqual(response.data['results'][0]['stars_given'], br_two.stars_given)
+        self.assertEqual(response.data['results'][0]['comment'], br_two.comment)
+
+        self.assertEqual(response.data['results'][1]['id'], br.id)
+        self.assertEqual(response.data['results'][1]['stars_given'], br.stars_given)
+        self.assertEqual(response.data['results'][1]['comment'], br.comment)
