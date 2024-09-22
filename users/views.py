@@ -18,21 +18,7 @@ class RegisterView(View):
         create_form = UserCreateForm(data=request.POST)
 
         if create_form.is_valid():
-            username = request.POST['username']
-            first_name = request.POST['first_name']
-            last_name = request.POST['last_name']
-            email = request.POST['email']
-            password = request.POST['password']
-
-            user = User.objects.create(
-                username=username,
-                first_name=first_name,
-                last_name=last_name,
-                email=email
-            )
-
-            user.set_password(password)
-            user.save()
+            create_form.save()
 
             return redirect('users:login')
         else:
