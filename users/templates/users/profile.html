@@ -11,4 +11,7 @@
     <p>Last Name: {{ user.last_name }}</p>
     <p>Email: {{ user.email }}</p>
 
+    <a href="{% url 'users:profile-edit' %}">Edit Profile</a>
+
+
 {% endblock %}

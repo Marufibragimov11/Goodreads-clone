@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth.forms import AuthenticationForm
 
-from .forms import UserCreateForm, UserLoginForm
+from .forms import UserCreateForm, UserLoginForm, UserUpdateForm
 
 
 class RegisterView(View):
@@ -59,3 +59,19 @@ class LogoutView(LoginRequiredMixin, View):
         logout(request)
         messages.info(request, "You have successfully logged out")
         return redirect("landing_page")
+
+
+class ProfileUpdateView(LoginRequiredMixin, View):
+    def get(self, request):
+        user_update_form = UserUpdateForm(instance=request.user)
+        return render(request, "users/profile_edit.html", {"form": user_update_form})
+
+    def post(self, request):
+        user_update_form = UserUpdateForm(instance=request.user, data=request.POST)
+
+        if user_update_form.is_valid():
+            user_update_form.save()
+            messages.success(request, "You have successfully updated your profile")
+
+            return redirect("users:profile")
+        return render(request, "users/profile_edit.html", {"form": user_update_form})
