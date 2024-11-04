@@ -6,12 +6,16 @@
 
     <h1>Profile page</h1>
 
+    <img class="profile-pic" alt="Profile picture" src="{{ user.profile_picture.url }}">
+
     <p>Username: {{ user.username }}</p>
     <p>First Name: {{ user.first_name }}</p>
     <p>Last Name: {{ user.last_name }}</p>
     <p>Email: {{ user.email }}</p>
 
-    <a href="{% url 'users:profile-edit' %}">Edit Profile</a>
+    <div>
+        <a href="{% url 'users:profile-edit' %}">Edit Profile</a>
+    </div>
 
 
 {% endblock %}
