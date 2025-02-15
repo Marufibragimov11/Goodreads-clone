@@ -23,7 +23,7 @@ A web application that replicates the core functionalities of Goodreads, allowin
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/yourusername/goodreads-clone.git
+   git clone https://github.com/Marufibragimov11/Goodreads-clone.git
    cd goodreads-clone
    ```
 2. Create and activate a virtual environment:
