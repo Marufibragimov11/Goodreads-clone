@@ -15,9 +15,9 @@ A web application that replicates the core functionalities of Goodreads, allowin
 ## Tech Stack
 
 - **Backend:** Django, Django REST Framework
-- **Frontend:** HTML, CSS, JavaScript (optional if using templates)
+- **Frontend:** HTML, CSS (Bootstrap), JavaScript
 - **Database:** PostgreSQL
-- **Authentication:** JWT or Django's built-in authentication
+- **Authentication:** JWT
 
 ## Installation
 
